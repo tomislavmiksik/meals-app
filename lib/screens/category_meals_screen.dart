@@ -8,8 +8,7 @@ class CategoryMealsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //getting arguments for the route that is declared in main.dart
-    final routeArgs =
-        ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+    final routeArgs = ModalRoute.of(context)!.settings.arguments as Map<String, String>;
     final catTitle = routeArgs['title'];
     final catId = routeArgs['id'];
     //grouping meals with categories
@@ -25,6 +24,7 @@ class CategoryMealsScreen extends StatelessWidget {
       body: ListView.builder(
         itemBuilder: (ctx, index) {
           return MealItem(
+            id: catMeals[index].id,
             title: catMeals[index].title,
             imgUrl: catMeals[index].imageUrl,
             complexity: catMeals[index].complexity,
