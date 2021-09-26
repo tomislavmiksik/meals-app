@@ -126,7 +126,6 @@ class MealItem extends StatelessWidget {
             ),
             //Rows containing details about the meal
             //
-            //
             Container(
               decoration: const BoxDecoration(
                 //shape: BoxShape.rectangle,
@@ -154,7 +153,6 @@ class MealItem extends StatelessWidget {
                         ),
                         //text widget containing duration info
                         //
-                        //
                         Text(
                           '$duration min',
                         ),
@@ -164,7 +162,6 @@ class MealItem extends StatelessWidget {
                       children: <Widget>[
                         //simple icon to indicate complexity
                         //
-                        //
                         Icon(
                           Icons.assignment,
                         ),
@@ -172,7 +169,6 @@ class MealItem extends StatelessWidget {
                           width: 6,
                         ),
                         //text widget containing complexity info
-                        //
                         //
                         Text(
                           complexityText,
@@ -182,7 +178,6 @@ class MealItem extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         //simple icon to indicate affordability
-                        //
                         //
                         Icon(
                           Icons.price_check,
