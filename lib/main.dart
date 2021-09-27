@@ -51,12 +51,13 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'RobotoCondensed',
                 color: Colors.white,
               ),
+              subtitle1: TextStyle(color: Colors.white),
             ),
       ),
       initialRoute: '/',
       //list of all available routes which access the screens
       routes: {
-        '/': (ctx)=> TabsScreen(),
+        '/': (ctx) => TabsScreen(),
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
         FiltersScreen.routeName: (ctx) => FiltersScreen(),

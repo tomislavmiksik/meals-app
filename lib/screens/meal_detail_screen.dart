@@ -111,6 +111,17 @@ class MealDetailScreen extends StatelessWidget {
         title: Text(meal.title),
         backgroundColor: Color(0xFF082032),
         shadowColor: Colors.transparent,
+        actions: [
+          IconButton(
+              onPressed: (){
+                Navigator.of(context).pop(mealId);
+              },
+              icon: const Icon(
+                Icons.delete,
+                color: Color(0xFFe74c3c),
+                size: 30,
+              )),
+        ],
       ),
       body: SafeArea(
         //top: false,

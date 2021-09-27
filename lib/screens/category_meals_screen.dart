@@ -1,21 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/models/meal.dart';
 import '../dummy_data.dart';
 import '../widgets/meal_item.dart';
 
-class CategoryMealsScreen extends StatelessWidget {
+class CategoryMealsScreen extends StatefulWidget {
   static const routeName = '/category-meals';
 
   @override
-  Widget build(BuildContext context) {
-    //getting arguments for the route that is declared in main.dart
-    final routeArgs = ModalRoute.of(context)!.settings.arguments as Map<String, String>;
-    final catTitle = routeArgs['title'];
-    final catId = routeArgs['id'];
-    //grouping meals with categories
-    final catMeals = DUMMY_MEALS.where((meal) {
-      return meal.categories.contains(catId);
-    }).toList();
+  State<CategoryMealsScreen> createState() => _CategoryMealsScreenState();
+}
 
+class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
+
+  late String? catTitle;
+  late List<Meal> catMeals;
+  bool _loadedInitData = false;
+
+  //runs before build and checks if changes have been made to data
+  //rarely used usually initState() works if no arguments are being passed on
+  //
+  @override
+  void didChangeDependencies() {
+    //getting arguments for the route that is declared in main.dart
+    if(!_loadedInitData){
+      final routeArgs = ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+      catTitle = routeArgs['title'];
+      final catId = routeArgs['id'];
+      //grouping meals with categories
+      catMeals = DUMMY_MEALS.where((meal) {
+        return meal.categories.contains(catId);
+      }).toList();
+      _loadedInitData = true;
+    }
+
+    super.didChangeDependencies();
+  }
+
+  void _removeMeal(String mealId){
+    setState((){
+      catMeals.removeWhere((element) => element.id == mealId);
+    });
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(catTitle!),
@@ -30,6 +59,7 @@ class CategoryMealsScreen extends StatelessWidget {
             complexity: catMeals[index].complexity,
             affordability: catMeals[index].affordability,
             duration: catMeals[index].duration,
+            removeItem: _removeMeal,
           );
         },
         itemCount: catMeals.length,
