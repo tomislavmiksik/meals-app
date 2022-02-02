@@ -1,3 +1,3 @@
 # meals_app
 
-A new Flutter project.
+A concept app to show recipes for a variety of meals
